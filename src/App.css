@@ -46,3 +46,16 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+.app-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.app-main {
+  flex: 3 60rem;
+}
+
+.app-sidebar {
+  flex: 1 20rem;
+}
