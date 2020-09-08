@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './products.css'
 
 export default class Products extends Component {
   render() {
@@ -7,15 +8,16 @@ export default class Products extends Component {
         <ul className="products-list">
           {this.props.products.map(product => (
             <li key={product._id}>
-              <div>
+              <div className="product">
                 <a href={"#" + product._id}>
                   <img src={product.image} alt={product.title} />
                   <p>{product.title}</p>
                 </a>
-              </div>
-              <div className="product-price">
-                <div>{product.price}</div>
-                <button>Add to Cart</button>
+                
+                <div className="product-price">
+                  <div>{product.price}</div>
+                  <button>Add to Cart</button>
+                </div>
               </div>
             </li>
           ))}
