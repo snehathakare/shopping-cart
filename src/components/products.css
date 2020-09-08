@@ -8,6 +8,9 @@
     list-style-type: none;
   }
 
+  a {
+    text-decoration: none;
+  }
 .products-list li{
   flex: 0 1 29rem;
   height: 47rem;
