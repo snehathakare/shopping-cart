@@ -26,4 +26,13 @@
   .cart-right {
     text-align: right;
   }
+  .cart-checkout li{
+    list-style-type: none;
+    padding: 5px;
+  }
+  .cart-checkout {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+  }
   

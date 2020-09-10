@@ -63,6 +63,10 @@ class App extends Component {
     this.setState({ cartItems });
   }
 
+  createOrder = (event) => {
+    event.preventDefault()
+  }
+
   render() {
     return (
       <div className="app-grid">
@@ -81,7 +85,8 @@ class App extends Component {
             <div className="app-sidebar">
               <Cart
                 cartItems={this.state.cartItems}
-                removeFromCart={this.removeFromCart} />
+                removeFromCart={this.removeFromCart}
+                createOrder = {this.createOrder} />
             </div>
           </div>
         </main>

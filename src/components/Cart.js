@@ -3,6 +3,10 @@ import './cart.css'
 import formatCurrency from '../util';
 
 export default class Cart extends Component {
+    constructor(props) {
+        super(props);
+        this.state = { showCheckout: false }
+    }
     render() {
         const { cartItems } = this.props;
         return (
@@ -24,7 +28,7 @@ export default class Cart extends Component {
                                 <div>{item.title}</div>
                                 <div className="cart-right">
                                     {formatCurrency(item.price)} X {(item.count)} {" "}
-                                    <button className="button" onClick={()=>this.props.removeFromCart(item)}>Remove</button>
+                                    <button className="button" onClick={() => this.props.removeFromCart(item)}>Remove</button>
                                 </div>
                             </li>
                         ))}
@@ -32,13 +36,25 @@ export default class Cart extends Component {
                 </div>
                 {cartItems.length !== 0 && (
                     <div className="cart-total">
-                    Total:{" "}
-                        {formatCurrency(cartItems.reduce((total, c ) => total + c.price * c.count,0))}  
-                        <button>Proceed</button>  
-                </div>
+                        Total:{" "}
+                        {formatCurrency(cartItems.reduce((total, c) => total + c.price * c.count, 0))}
+                        <button onClick={() => { this.setState({ showCheckout: true }) }}>Proceed</button>
+                    </div>   
                 )}
-                
+                {this.state.showCheckout && (
+                        <div className="cart-checkout">
+                            <form onSubmit={this.createOrder}>
+                                <ul>
+                                    <li><label>Email: </label><input type="email"></input></li>
+                                    <li><label>Name: </label><input type="text"></input></li>
+                                    <li><label>Address: </label><input type="text"></input></li>
+                                    <li><button>Checkout</button></li>
+                                </ul>
+                            </form>
+                        </div>
+                )}
+
             </Fragment>
-        )
+        );
     }
 }
