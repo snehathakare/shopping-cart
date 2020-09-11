@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import './cart.css'
 import formatCurrency from '../util';
+import Fade from 'react-reveal/Fade';
 
 export default class Cart extends Component {
     constructor(props) {
@@ -21,18 +22,20 @@ export default class Cart extends Component {
                         )}
                 </div>
                 <div className="cart">
-                    <ul className="cart-items">
-                        {cartItems.map(item => (
-                            <li key={item._id}>
-                                <div><img src={item.image} alt={item.title} /></div>
-                                <div>{item.title}</div>
-                                <div className="cart-right">
-                                    {formatCurrency(item.price)} X {(item.count)} {" "}
-                                    <button className="button" onClick={() => this.props.removeFromCart(item)}>Remove</button>
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
+                    <Fade left cascade>
+                        <ul className="cart-items">
+                            {cartItems.map(item => (
+                                <li key={item._id}>
+                                    <div><img src={item.image} alt={item.title} /></div>
+                                    <div>{item.title}</div>
+                                    <div className="cart-right">
+                                        {formatCurrency(item.price)} X {(item.count)} {" "}
+                                        <button className="button" onClick={() => this.props.removeFromCart(item)}>Remove</button>
+                                    </div>
+                                </li>
+                            ))}
+                        </ul>
+                    </Fade>
                 </div>
                 {cartItems.length !== 0 && (
                     <div className="cart-total">
@@ -43,14 +46,16 @@ export default class Cart extends Component {
                 )}
                 {this.state.showCheckout && (
                         <div className="cart-checkout">
-                            <form onSubmit={this.createOrder}>
-                                <ul>
-                                    <li><label>Email: </label><input type="email"></input></li>
-                                    <li><label>Name: </label><input type="text"></input></li>
-                                    <li><label>Address: </label><input type="text"></input></li>
-                                    <li><button>Checkout</button></li>
-                                </ul>
-                            </form>
+                            <Fade right>
+                                <form onSubmit={this.createOrder}>
+                                    <ul>
+                                        <li><label>Email: </label><input type="email"></input></li>
+                                        <li><label>Name: </label><input type="text"></input></li>
+                                        <li><label>Address: </label><input type="text"></input></li>
+                                        <li><button>Checkout</button></li>
+                                    </ul>
+                                </form>
+                            </Fade>
                         </div>
                 )}
 
