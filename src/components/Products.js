@@ -65,20 +65,20 @@ export default class Products extends Component {
                       </span>
                     ))}
                   </p>
-                  </div>
-                  <div className="product-price">
-                    <div>{formatCurrency(product.price)}</div>
-                    <button
-                      className="button primary"
-                      onClick={() => {
-                        this.props.addToCart(product);
-                        this.closeModal();
-                      }}
-                    >
-                      Add To Cart
+                </div>
+                <div className="product-price">
+                  <div>{formatCurrency(product.price)}</div>
+                  <button
+                    className="button primary"
+                    onClick={() => {
+                      this.props.addToCart(product);
+                      this.closeModal();
+                    }}
+                  >
+                    Add To Cart
                     </button>
-                  </div>
-                </div>  
+                </div>
+              </div>
             </Modal>
           )
         }
