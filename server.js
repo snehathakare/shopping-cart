@@ -4,7 +4,7 @@ const mongoose = require("mongoose");
 const shortid = require("shortid");
 
 const app = express();
-app.use(bodyParser);
+app.use(bodyParser.json());
 
 mongoose.connect("mongodb://localhost/shopping-cart-db",
     {
@@ -35,6 +35,11 @@ mongoose.connect("mongodb://localhost/shopping-cart-db",
     const newProduct = new Product(req.body);
     const savedProduct = await newProduct.save();
     res.send(savedProduct);
+  });
+
+  app.delete("/api/orders/:id", async (req, res) => {
+    const order = await Order.findByIdAndDelete(req.params.id);
+    res.send(order);
   });
 
 const port = process.env.PORT || 5000;
